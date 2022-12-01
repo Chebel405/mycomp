@@ -23,8 +23,8 @@ public interface EquipeService {
 
     /**
      * Supprimer un membre de l'équipe
-     * @param id
+     * @param
      * @return
      */
-    Equipe supprimer(String id);
+    Equipe supprimerMembre(String idEquipe, String idMembre);
 }

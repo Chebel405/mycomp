@@ -26,8 +26,8 @@ public class EquipeServiceImpl implements EquipeService {
     }
 
     public Equipe save(Equipe entity) {
-        for(Personne membre: entity.getMembres()){
-            if(membre.getId() == null){
+        for (Personne membre : entity.getMembres()) {
+            if (membre.getId() == null) {
                 this.personneService.save(membre);
             }
         }
@@ -35,7 +35,7 @@ public class EquipeServiceImpl implements EquipeService {
     }
 
     public Equipe findById(String id) {
-        return equipeRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return equipeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     public void deleteById(String id) {
@@ -43,13 +43,13 @@ public class EquipeServiceImpl implements EquipeService {
     }
 
     @Override
-    public Equipe ajoutMembre(String idEquipe, String idMembre){
+    public Equipe ajoutMembre(String idEquipe, String idMembre) {
         Equipe equipe = this.findById(idEquipe);
         Personne membre = this.personneService.findById(idMembre);
 
         //2 meme methode
         // 1ere JAVA
-        if(!equipe.getMembres().stream().anyMatch(equipeMembre -> equipeMembre.getId().equals(idMembre))){
+        if (!equipe.getMembres().stream().anyMatch(equipeMembre -> equipeMembre.getId().equals(idMembre))) {
             equipe.getMembres().add(membre);
         }
 
@@ -66,4 +66,13 @@ public class EquipeServiceImpl implements EquipeService {
         return this.save(equipe);
 
     }
+
+    @Override
+    public Equipe supprimerMembre(String idEquipe, String idMembre) {
+        Equipe equipe = findById(idEquipe);
+        equipe.getMembres().removeIf(membre -> membre.getId().equals(idMembre));
+        return save(equipe);
+
+    }
+
 }
