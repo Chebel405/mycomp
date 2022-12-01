@@ -10,4 +10,6 @@ public interface CompetenceService {
     Competence findById(String id);
 
     void deleteById(String id);
+
+
 }

@@ -1,5 +1,6 @@
 package fr.kira.formation.spring.competences.mycomp.competences;
 
+import fr.kira.formation.spring.competences.mycomp.equipes.EquipeService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

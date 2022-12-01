@@ -2,11 +2,13 @@ package fr.kira.formation.spring.competences.mycomp.equipes;
 
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/equipes")
 @CrossOrigin
+
 public class EquipeController {
 
     private final EquipeService equipeService;
@@ -35,4 +37,9 @@ public class EquipeController {
         equipeService.deleteById(id);
     }
 
-}
+    @PutMapping("{idEquipe}/membres/{idMembre}")
+        public Equipe ajoutMembre(@PathVariable String idEquipe,
+                                  @PathVariable String idMembre){
+            return this.equipeService.ajoutMembre(idEquipe, idMembre);
+        }
+    }
